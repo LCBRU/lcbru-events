@@ -1,2 +1,2 @@
 # lcbru-events
-Allow participants to 
+Allow participants to register for events at the LCBRU
