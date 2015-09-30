@@ -1,22 +1,31 @@
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, session, request
 from lcbru_events import app
-from lcbru_events.forms.genvasc_collaborators import PracticeForm, AttendeeForm
+from lcbru_events.forms.genvasc_collaborators import PracticeForm, PracticeDelegatesForm
+import time
 
 @app.route('/genvasc_collaborators/', methods=['GET', 'POST'])
 def genvasc_collaborators_introduction():
+    session['practice_code'] = ''
+
     form = PracticeForm()
 
     if form.validate_on_submit():
         session['practice_code'] = form.practice_code.data
-        return redirect(url_for('genvasc_collaborators_attendees'))
+        return redirect(url_for('genvasc_collaborators_delegates'))
+
+    if request.method == 'POST':
+        time.sleep(5.5)
 
     return render_template('genvasc_collaborators/introduction.html', form=form)
 
-@app.route('/genvasc_collaborators/attendees/', methods=['GET', 'POST'])
-def genvasc_collaborators_attendees():
-    form = AttendeeForm(practice_code = session['practice_code'])
+@app.route('/genvasc_collaborators/delegates/', methods=['GET', 'POST'])
+def genvasc_collaborators_delegates():
+    if (session['practice_code'] == ''):
+        return redirect(url_for('genvasc_collaborators_introduction'))
+
+    form = PracticeDelegatesForm(practice_code = session['practice_code'])
 
     if form.validate_on_submit():
         return redirect(url_for('index'))
 
-    return render_template('genvasc_collaborators/attendees.html', form=form)
+    return render_template('genvasc_collaborators/delegates.html', form=form)

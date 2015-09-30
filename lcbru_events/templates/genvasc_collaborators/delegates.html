@@ -1,0 +1,49 @@
+{% extends "standardLayout.html" %}
+{% import "_formVerticalHelpers.html" as formhelper %}
+
+{% block content %}
+    <h2>GENVASC Collaborators</h2>
+
+    <p>
+    	Please can you provide us with some information about who from your practice
+    	would like to attend the GENVASC Collaborators meeting.
+    </p>
+
+    <form method="POST">
+		{{ form.hidden_tag() }}
+		
+		<div class="col-sm-6">
+
+			<div class="lcbru-form">
+
+			    <h4>Delegate 1</h4>
+
+		        {{ formhelper.render_field(form.delegate1.fullname) }}
+		        {{ formhelper.render_field(form.delegate1.email) }}
+		        {{ formhelper.render_field(form.delegate1.role) }}
+		        {{ formhelper.render_field(form.delegate1.dietary) }}
+		        {{ formhelper.render_field(form.delegate1.meeting) }}
+		    </div>
+		</div>
+
+	    <div class="col-sm-6">
+
+			<div class="lcbru-form">
+
+			    <h4>Delegate 2</h4>
+
+		        {{ formhelper.render_field(form.delegate2.fullname) }}
+		        {{ formhelper.render_field(form.delegate2.email) }}
+		        {{ formhelper.render_field(form.delegate2.role) }}
+		        {{ formhelper.render_field(form.delegate2.dietary) }}
+		        {{ formhelper.render_field(form.delegate2.meeting) }}
+		    </div>
+
+		</div>
+
+	    <div class="col-sm-12 text-right">
+	        <button type="submit" class="btn btn-primary">Submit</button>
+	    </div>
+	</form>
+{% endblock %}
+
