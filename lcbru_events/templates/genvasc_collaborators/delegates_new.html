@@ -1,0 +1,25 @@
+{% extends "standardLayout.html" %}
+{% import "_formVerticalHelpers.html" as formhelper %}
+
+{% block content %}
+    <h2>Delegate Entry</h2>
+
+    <form method="POST">
+		{{ form.hidden_tag() }}
+		
+		<div class="col-sm-6 col-sm-offset-3 lcbru-form">
+		    <h4>Delegate</h4>
+
+	        {{ formhelper.render_field(form.fullname) }}
+	        {{ formhelper.render_field(form.email) }}
+	        {{ formhelper.render_field(form.role) }}
+	        {{ formhelper.render_field(form.dietary) }}
+	        {{ formhelper.render_field(form.meeting) }}
+		</div>
+
+	    <div class="col-sm-12 text-right">
+	        <button type="submit" class="btn btn-primary">Submit</button>
+	    </div>
+	</form>
+{% endblock %}
+

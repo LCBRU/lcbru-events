@@ -30,4 +30,3 @@ class Delegate(db.Model):
         self.role = kwargs.get('role')
         self.dietary = kwargs.get('dietary')
         self.meeting = kwargs.get('meeting')
-        self.practice = kwargs.get('practice')
