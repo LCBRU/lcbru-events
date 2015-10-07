@@ -20,7 +20,7 @@ class Delegate(db.Model):
     role = db.Column(db.String(50))
     dietary = db.Column(db.String(200))
     meeting = db.Column(db.String(50))
-    practice = db.relationship("Practice", backref=db.backref('genvasc_collaborators_delegate', uselist=False, cascade="all, delete-orphan"))
+    practice = db.relationship("Practice", backref=db.backref('delegates', order_by=id, cascade="all, delete-orphan"))
 
     def __init__(self, *args, **kwargs):
         self.id = kwargs.get('id')

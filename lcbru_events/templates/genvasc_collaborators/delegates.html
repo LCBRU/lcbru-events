@@ -1,17 +1,45 @@
-{% extends "standardLayout.html" %}
+{% extends "genvasc_collaborators/layout.html" %}
 {% import "_formVerticalHelpers.html" as formhelper %}
 
-{% block content %}
-    <h2>GENVASC Collaborators</h2>
-
-    <p>
+{% block genvasc_collaborators_content %}
+    <p> 
     	Please can you provide us with some information about who from your practice
     	would like to attend the GENVASC Collaborators meeting.
     </p>
 
-    <div class="col-sm-12 text-center">
-        <a href="{{ url_for('genvasc_collaborators_delegate_new') }}" class="btn btn-primary btn-sm" role="button">Add Delegate</a>
-    </div>
+    <div class="col-sm-8 col-sm-offset-2">
+	    <h3>Delegates for practice {{ practice.practiceCode }}</h3>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Meeting</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in practice.delegates %}
+					<tr>
+						<td>
+							<a href="{{ url_for('genvasc_collaborators_delegate_edit', id=item.id) }}">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span class="sr-only">Edit</span>
+							</a>
+						</td>
+						<td>{{ item.fullname }}</td>
+						<td>{{ item.email }}</td>
+						<td>{{ item.meeting }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	    <div class="col-sm-12 text-right">
+	        <a href="{{ url_for('genvasc_collaborators_delegate_new') }}" class="btn btn-primary btn-sm" role="button">Add Delegate</a>
+	    </div>
+	</div>
 
 {% endblock %}
 

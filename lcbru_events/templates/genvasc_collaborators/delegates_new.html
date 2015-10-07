@@ -1,14 +1,12 @@
-{% extends "standardLayout.html" %}
+{% extends "genvasc_collaborators/layout.html" %}
 {% import "_formVerticalHelpers.html" as formhelper %}
 
-{% block content %}
-    <h2>Delegate Entry</h2>
-
+{% block genvasc_collaborators_content %}
     <form method="POST">
 		{{ form.hidden_tag() }}
 		
 		<div class="col-sm-6 col-sm-offset-3 lcbru-form">
-		    <h4>Delegate</h4>
+		    <h4>Delegate Entry</h4>
 
 	        {{ formhelper.render_field(form.fullname) }}
 	        {{ formhelper.render_field(form.email) }}
@@ -18,6 +16,7 @@
 		</div>
 
 	    <div class="col-sm-12 text-right">
+	        <a href="{{ url_for('genvasc_collaborators_delegates') }}" class="btn btn-default" role="button">Cancel</a>
 	        <button type="submit" class="btn btn-primary">Submit</button>
 	    </div>
 	</form>

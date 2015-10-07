@@ -32,7 +32,7 @@ def genvasc_collaborators_delegates():
     if (not practice):
         return redirect(url_for('genvasc_collaborators_introduction'))
 
-    return render_template('genvasc_collaborators/delegates.html')
+    return render_template('genvasc_collaborators/delegates.html', practice=practice)
 
 @app.route('/genvasc_collaborators/delegates/new', methods=['GET', 'POST'])
 def genvasc_collaborators_delegate_new():
@@ -44,19 +44,26 @@ def genvasc_collaborators_delegate_new():
     form = DelegateEditForm()
 
     if form.validate_on_submit():
-
-        delegate = Delegate(
-            practiceId = practice.id,
-            fullname = form.fullname.data,
-            email = form.email.data,
-            role = form.role.data,
-            dietary = form.dietary.data,
-            meeting = form.meeting.id
-            )
-
+        delegate = Delegate(practiceId=practice.id)
+        form.populate_obj(delegate)
         db.session.add(delegate)
         db.session.commit()
 
         return redirect(url_for('genvasc_collaborators_delegates'))
 
     return render_template('genvasc_collaborators/delegates_new.html', form=form)
+
+@app.route("/genvasc_collaborators/delegates/edit/<int:id>", methods=['GET','POST'])
+def genvasc_collaborators_delegate_edit(id):
+    delegate = Delegate.query.get(id)
+
+    form = DelegateEditForm(obj=delegate)
+
+    if form.validate_on_submit():
+        form.populate_obj(delegate)
+        db.session.add(delegate)
+        db.session.commit()
+        return redirect(url_for('genvasc_collaborators_delegates'))
+
+    return render_template('genvasc_collaborators/delegates_new.html', form=form)
+

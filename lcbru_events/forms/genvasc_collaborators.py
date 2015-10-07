@@ -7,6 +7,7 @@ class PracticeForm(Form):
     practice_code = StringField('Practice Code', validators=[DataRequired(), Length(max=10)])
 
 class DelegateEditForm(Form):
+    id = HiddenField('id')
     fullname = StringField('Name', validators=[DataRequired(), Length(max=100)])
     email = EmailField('Email', validators=[DataRequired(), Length(max=200)])
     role = SelectField('Role', choices=[('', ''), ('GP', 'GP'), ('Practice Manager', 'Practice Manager'), ('Nurse', 'Nurse'), ('Health Care Assisstant', 'Health Care Assisstant'), ('Phlebotomist', 'Phlebotomists'), ('Administrator', 'Administrator'), ('Other', 'Other')])
