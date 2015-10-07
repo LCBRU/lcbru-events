@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, session, request, flash
 from lcbru_events import app, db
-from lcbru_events.forms.genvasc_collaborators import PracticeForm, DelegateEditForm
+from lcbru_events.forms.genvasc_collaborators import PracticeForm, DelegateEditForm, DelegateDeleteForm
 from lcbru_events.model.genvasc_collaborators import Practice, Delegate
 import time
 
@@ -67,3 +67,22 @@ def genvasc_collaborators_delegate_edit(id):
 
     return render_template('genvasc_collaborators/delegates_new.html', form=form)
 
+@app.route("/genvasc_collaborators/delegates/delete/<int:id>")
+def genvasc_collaborators_delegate_delete(id):
+    delegate = Delegate.query.get(id)
+    form = DelegateDeleteForm(obj=delegate)
+    return render_template('genvasc_collaborators/delegates_delete.html', delegate=delegate, form=form)
+
+@app.route("/genvasc_collaborators/delegates/delete", methods=['POST'])
+def genvasc_collaborators_delegate_delete_confirm():
+    form = DelegateDeleteForm()
+
+    if form.validate_on_submit():
+        delegate = Delegate.query.get(form.id.data)
+
+        if (delegate):
+            db.session.delete(delegate)
+            db.session.commit()
+            flash("Deleted delegate '%s'." % delegate.fullname)
+            
+    return redirect(url_for('genvasc_collaborators_delegates'))
