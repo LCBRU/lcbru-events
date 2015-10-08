@@ -41,6 +41,10 @@ def genvasc_collaborators_delegate_new():
     if (not practice):
         return redirect(url_for('genvasc_collaborators_introduction'))
 
+    if (len(practice.delegates) >= 2):
+        flash("Cannot add delegate to practice as you have reached your allocation limit.", "error")
+        return redirect(url_for('genvasc_collaborators_delegates'))
+
     form = DelegateEditForm()
 
     if form.validate_on_submit():
