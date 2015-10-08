@@ -10,6 +10,9 @@ class Practice(db.Model):
         self.id = kwargs.get('id')
         self.practiceCode = kwargs.get('practiceCode')
 
+    def delegate_allocation_full(self):
+        return (len(self.delegates) >= 2)
+
 class Delegate(db.Model):
     __tablename__ = 'genvasc_collaborators_delegate'
 
