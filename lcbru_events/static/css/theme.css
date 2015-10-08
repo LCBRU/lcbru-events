@@ -29,6 +29,10 @@ header a, header a:hover {
   display: block;
 }
 
+div.container {
+  margin-top: 20px;
+}
+
 /* Footer */
 
 .footer {
