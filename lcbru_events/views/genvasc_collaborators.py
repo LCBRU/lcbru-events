@@ -58,7 +58,7 @@ def genvasc_collaborators_delegate_new():
 
         return redirect(url_for('genvasc_collaborators_delegates'))
 
-    return render_template('genvasc_collaborators/delegates_new.html', form=form, fullyBookedMeetings=fullyBookedMeetings)
+    return render_template('genvasc_collaborators/delegate_form.html', form=form, fullyBookedMeetings=fullyBookedMeetings)
 
 @app.route("/genvasc_collaborators/delegates/edit/<int:id>", methods=['GET','POST'])
 def genvasc_collaborators_delegate_edit(id):
@@ -80,7 +80,7 @@ def genvasc_collaborators_delegate_edit(id):
         db.session.commit()
         return redirect(url_for('genvasc_collaborators_delegates'))
 
-    return render_template('genvasc_collaborators/delegates_new.html', form=form, fullyBookedMeetings=fullyBookedMeetings)
+    return render_template('genvasc_collaborators/delegate_form.html', form=form, fullyBookedMeetings=fullyBookedMeetings)
 
 @app.route("/genvasc_collaborators/delegates/delete/<int:id>")
 def genvasc_collaborators_delegate_delete(id):
