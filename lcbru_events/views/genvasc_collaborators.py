@@ -48,7 +48,7 @@ def genvasc_collaborators_delegate_new():
     (fullyBookedMeetings, availableMeetings) = _genvasc_collaborator_get_meetings()
 
     form = DelegateEditForm()
-    form.meetingId.choices = [(m.id, m.name) for m in availableMeetings]
+    form.meetingId.choices = [(m.id, m.name_with_spaces_remaining()) for m in availableMeetings]
 
     if form.validate_on_submit():
         delegate = Delegate(practiceId=practice.id)
@@ -72,7 +72,7 @@ def genvasc_collaborators_delegate_edit(id):
     (fullyBookedMeetings, availableMeetings) = _genvasc_collaborator_get_meetings(delegate.meetingId)
 
     form = DelegateEditForm(obj=delegate)
-    form.meetingId.choices = [(m.id, m.name) for m in availableMeetings]
+    form.meetingId.choices = [(m.id, m.name_with_spaces_remaining()) for m in availableMeetings]
 
     if form.validate_on_submit():
         form.populate_obj(delegate)
@@ -109,5 +109,8 @@ def _genvasc_collaborator_get_meetings(existing_meeting_id=-1):
     allMeetings = Meeting.query.all()
     fullyBookedMeetings = [m for m in allMeetings if m.full() and m.id != existing_meeting_id]
     availableMeetings = [m for m in allMeetings if m not in fullyBookedMeetings]
+
+    for m in allMeetings:
+        print m.spaces_remaining()
 
     return (fullyBookedMeetings, availableMeetings)    

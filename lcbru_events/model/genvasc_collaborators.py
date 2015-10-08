@@ -48,4 +48,24 @@ class Meeting(db.Model):
         self.spaces = kwargs.get('spaces')
 
     def full(self):
-        return len(self.delegates) >= self.spaces
+        if (self.spaces is None):
+            return False
+        else:
+            return len(self.delegates) >= self.spaces
+
+    def spaces_remaining(self):
+        if (self.spaces is None):
+            return 0
+        else:
+            return self.spaces - len(self.delegates)
+
+    def name_with_spaces_remaining(self):
+        if (self.spaces is None):
+            return self.name
+        else:
+            theS = 's'
+            
+            if (self.spaces_remaining() == 1):
+                theS = ''
+
+            return self.name + ' (' + str(self.spaces_remaining()) + ' space' + theS + ' remaining)'
