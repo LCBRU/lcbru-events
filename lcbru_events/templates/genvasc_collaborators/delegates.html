@@ -41,9 +41,13 @@
 			</tbody>
 		</table>
 
-	    <div class="col-sm-12 text-right">
-	        <a href="{{ url_for('genvasc_collaborators_delegate_new') }}" class="btn btn-primary btn-sm" role="button">Add Delegate</a>
-	    </div>
+        {% if not practice.delegate_allocation_full() %}
+
+		    <div class="col-sm-12 text-right">
+		        <a href="{{ url_for('genvasc_collaborators_delegate_new') }}" class="btn btn-primary btn-sm" role="button">Add Delegate</a>
+		    </div>
+
+		{% endif %}
 	</div>
 
 {% endblock %}

@@ -27,7 +27,7 @@ def genvasc_collaborators_introduction():
 
 @app.route('/genvasc_collaborators/delegates/', methods=['GET', 'POST'])
 def genvasc_collaborators_delegates():
-    practice = Practice.query.filter_by(practiceCode=session['practice_code']).first()
+    practice = _genvasc_collaborator_get_session_practice()
 
     if (not practice):
         return redirect(url_for('genvasc_collaborators_introduction'))
@@ -36,7 +36,7 @@ def genvasc_collaborators_delegates():
 
 @app.route('/genvasc_collaborators/delegates/new', methods=['GET', 'POST'])
 def genvasc_collaborators_delegate_new():
-    practice = Practice.query.filter_by(practiceCode=session['practice_code']).first()
+    practice = _genvasc_collaborator_get_session_practice()
 
     if (not practice):
         return redirect(url_for('genvasc_collaborators_introduction'))
@@ -59,7 +59,12 @@ def genvasc_collaborators_delegate_new():
 
 @app.route("/genvasc_collaborators/delegates/edit/<int:id>", methods=['GET','POST'])
 def genvasc_collaborators_delegate_edit(id):
+    practice = _genvasc_collaborator_get_session_practice()
     delegate = Delegate.query.get(id)
+
+    if (practice != delegate.practice):
+        flash("Permission denied.", "error")
+        return redirect(url_for('genvasc_collaborators_delegates'))        
 
     form = DelegateEditForm(obj=delegate)
 
@@ -90,3 +95,6 @@ def genvasc_collaborators_delegate_delete_confirm():
             flash("Deleted delegate '%s'." % delegate.fullname)
             
     return redirect(url_for('genvasc_collaborators_delegates'))
+
+def _genvasc_collaborator_get_session_practice():
+    return Practice.query.filter_by(practiceCode=session['practice_code']).first()
