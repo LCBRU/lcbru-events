@@ -13,6 +13,17 @@
 	        {{ formhelper.render_field(form.role) }}
 	        {{ formhelper.render_field(form.dietary) }}
 	        {{ formhelper.render_field(form.meetingId) }}
+
+	        {% if fullyBookedMeetings|length > 0 %}
+
+		        <p>The following meetings are already fully booked:</p>
+
+		        <ul>
+					{% for item in fullyBookedMeetings %}
+						<li>{{ item.name }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
 		</div>
 
 	    <div class="col-sm-12 text-right">

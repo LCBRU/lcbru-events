@@ -45,13 +45,10 @@ def genvasc_collaborators_delegate_new():
         flash("Cannot add delegate to practice as you have reached your allocation limit.", "error")
         return redirect(url_for('genvasc_collaborators_delegates'))
 
+    (fullyBookedMeetings, availableMeetings) = _genvasc_collaborator_get_meetings()
+
     form = DelegateEditForm()
-
-    meetings = Meeting.query.all()
-
-    form.meetingId.choices = [(m.id, m.name) for m in meetings if not m.full()]
-
-    print "Meetings: ", form.meetingId.choices;
+    form.meetingId.choices = [(m.id, m.name) for m in availableMeetings]
 
     if form.validate_on_submit():
         delegate = Delegate(practiceId=practice.id)
@@ -61,7 +58,7 @@ def genvasc_collaborators_delegate_new():
 
         return redirect(url_for('genvasc_collaborators_delegates'))
 
-    return render_template('genvasc_collaborators/delegates_new.html', form=form)
+    return render_template('genvasc_collaborators/delegates_new.html', form=form, fullyBookedMeetings=fullyBookedMeetings)
 
 @app.route("/genvasc_collaborators/delegates/edit/<int:id>", methods=['GET','POST'])
 def genvasc_collaborators_delegate_edit(id):
@@ -72,7 +69,10 @@ def genvasc_collaborators_delegate_edit(id):
         flash("Permission denied.", "error")
         return redirect(url_for('genvasc_collaborators_delegates'))        
 
+    (fullyBookedMeetings, availableMeetings) = _genvasc_collaborator_get_meetings(delegate.meetingId)
+
     form = DelegateEditForm(obj=delegate)
+    form.meetingId.choices = [(m.id, m.name) for m in availableMeetings]
 
     if form.validate_on_submit():
         form.populate_obj(delegate)
@@ -80,7 +80,7 @@ def genvasc_collaborators_delegate_edit(id):
         db.session.commit()
         return redirect(url_for('genvasc_collaborators_delegates'))
 
-    return render_template('genvasc_collaborators/delegates_new.html', form=form)
+    return render_template('genvasc_collaborators/delegates_new.html', form=form, fullyBookedMeetings=fullyBookedMeetings)
 
 @app.route("/genvasc_collaborators/delegates/delete/<int:id>")
 def genvasc_collaborators_delegate_delete(id):
@@ -104,3 +104,10 @@ def genvasc_collaborators_delegate_delete_confirm():
 
 def _genvasc_collaborator_get_session_practice():
     return Practice.query.filter_by(practiceCode=session['practice_code']).first()
+
+def _genvasc_collaborator_get_meetings(existing_meeting_id=-1):
+    allMeetings = Meeting.query.all()
+    fullyBookedMeetings = [m for m in allMeetings if m.full() and m.id != existing_meeting_id]
+    availableMeetings = [m for m in allMeetings if m not in fullyBookedMeetings]
+
+    return (fullyBookedMeetings, availableMeetings)    
