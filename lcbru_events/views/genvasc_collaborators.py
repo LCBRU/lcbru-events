@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, session, request, flash
 from lcbru_events import app, db
 from lcbru_events.forms.genvasc_collaborators import PracticeForm, DelegateEditForm, DelegateDeleteForm
-from lcbru_events.model.genvasc_collaborators import Practice, Delegate
+from lcbru_events.model.genvasc_collaborators import Practice, Delegate, Meeting
 import time
 
 @app.route('/genvasc_collaborators/', methods=['GET', 'POST'])
@@ -46,6 +46,12 @@ def genvasc_collaborators_delegate_new():
         return redirect(url_for('genvasc_collaborators_delegates'))
 
     form = DelegateEditForm()
+
+    meetings = Meeting.query.all()
+
+    form.meetingId.choices = [(m.id, m.name) for m in meetings if not m.full()]
+
+    print "Meetings: ", form.meetingId.choices;
 
     if form.validate_on_submit():
         delegate = Delegate(practiceId=practice.id)

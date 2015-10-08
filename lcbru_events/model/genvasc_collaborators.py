@@ -22,8 +22,9 @@ class Delegate(db.Model):
     email = db.Column(db.String(200))
     role = db.Column(db.String(50))
     dietary = db.Column(db.String(200))
-    meeting = db.Column(db.String(50))
+    meetingId = db.Column(db.Integer, db.ForeignKey('genvasc_collaborators_meeting.id'))
     practice = db.relationship("Practice", backref=db.backref('delegates', order_by=id, cascade="all, delete-orphan"))
+    meeting = db.relationship("Meeting", backref=db.backref('delegates', order_by=id, cascade="all, delete-orphan"))
 
     def __init__(self, *args, **kwargs):
         self.id = kwargs.get('id')
@@ -32,4 +33,19 @@ class Delegate(db.Model):
         self.email = kwargs.get('email')
         self.role = kwargs.get('role')
         self.dietary = kwargs.get('dietary')
-        self.meeting = kwargs.get('meeting')
+        self.meetingId = kwargs.get('meetingId')
+
+class Meeting(db.Model):
+    __tablename__ = 'genvasc_collaborators_meeting'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    spaces = db.Column(db.Integer)
+
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs.get('id')
+        self.name = kwargs.get('name')
+        self.spaces = kwargs.get('spaces')
+
+    def full(self):
+        return len(self.delegates) >= self.spaces

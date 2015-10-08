@@ -12,7 +12,7 @@ class DelegateEditForm(Form):
     email = EmailField('Email', validators=[DataRequired(), Length(max=200)])
     role = SelectField('Role', choices=[('', ''), ('GP', 'GP'), ('Practice Manager', 'Practice Manager'), ('Nurse', 'Nurse'), ('Health Care Assisstant', 'Health Care Assisstant'), ('Phlebotomist', 'Phlebotomists'), ('Administrator', 'Administrator'), ('Other', 'Other')])
     dietary = StringField('Special Dietary Needs', validators=[Length(max=200)])
-    meeting = RadioField('Meeting', choices=[('02-Dec-2015', 'Wednesday, 2nd December 2015'), ('08-Dec-2015', 'Tuesday, 8th December 2015'), ('Another date if available', 'My preferred date if fully booked / Neither date is convenient, but interested in future dates')])
+    meetingId = RadioField('Meeting', coerce=int)
 
 class DelegateDeleteForm(Form):
     id = HiddenField('id')
