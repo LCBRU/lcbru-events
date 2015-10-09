@@ -110,7 +110,4 @@ def _genvasc_collaborator_get_meetings(existing_meeting_id=-1):
     fullyBookedMeetings = [m for m in allMeetings if m.full() and m.id != existing_meeting_id]
     availableMeetings = [m for m in allMeetings if m not in fullyBookedMeetings]
 
-    for m in allMeetings:
-        print m.spaces_remaining()
-
     return (fullyBookedMeetings, availableMeetings)    
