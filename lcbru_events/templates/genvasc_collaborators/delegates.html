@@ -2,44 +2,46 @@
 {% import "_formVerticalHelpers.html" as formhelper %}
 
 {% block genvasc_collaborators_content %}
-    <p> 
-    	Please can you provide us with some information about who from your practice
-    	would like to attend the GENVASC Collaborators meeting.
-    </p>
-
     <div class="col-sm-8 col-sm-offset-2">
 	    <h3>Delegates for practice {{ practice.practiceCode }}</h3>
+	    <p> 
+			Please nominate up to two representatives from your practice. Include their name, email address and role. If a parking pass is required, please enter their car registration number.
+			As a buffet will be provided, there is a space for you to register any specific dietary requirements.
+			If you would like to attend the event but neither dates are suitable or your preferred date is full, you can still register your interest for future events.
+		</p>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Meeting</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in practice.delegates %}
+		{% if practice.delegates|length > 0 %}
+			<table id="delegates" class="table">
+				<thead>
 					<tr>
-						<td>
-							<a href="{{ url_for('genvasc_collaborators_delegate_edit', id=item.id) }}">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								<span class="sr-only">Edit</span>
-							</a>
-							<a href="{{ url_for('genvasc_collaborators_delegate_delete', id=item.id) }}">
-								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								<span class="sr-only">Delete</span>
-							</a>
-
-						</td>
-						<td>{{ item.fullname }}</td>
-						<td>{{ item.email }}</td>
-						<td>{{ item.meeting.name }}</td>
+						<th></th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Meeting</th>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{% for item in practice.delegates %}
+						<tr>
+							<td>
+								<a href="{{ url_for('genvasc_collaborators_delegate_edit', id=item.id) }}">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									<span class="sr-only">Edit</span>
+								</a>
+								<a href="{{ url_for('genvasc_collaborators_delegate_delete', id=item.id) }}">
+									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<span class="sr-only">Delete</span>
+								</a>
+
+							</td>
+							<td>{{ item.fullname }}</td>
+							<td>{{ item.email }}</td>
+							<td>{{ item.meeting.name }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
 
         {% if not practice.delegate_allocation_full() %}
 

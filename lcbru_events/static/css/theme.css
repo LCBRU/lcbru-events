@@ -33,6 +33,16 @@ div.alert {
   margin-top: 20px;
 }
 
+h3 {
+  font-size: 2em;
+  text-align: center;
+}
+
+table#delegates {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 /* Footer */
 
 .footer {
@@ -75,4 +85,9 @@ ul.event_list li a{
 .lcbru-form h4 {
   text-align: center;
   margin-bottom: 20px;
+}
+
+#contactIfProblem {
+  margin-top: 20px;
+  text-align: center;
 }

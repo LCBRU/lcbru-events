@@ -6,12 +6,13 @@
 		{{ form.hidden_tag() }}
 		
 		<div class="col-sm-6 col-sm-offset-3 lcbru-form">
-		    <h4>Delegate Entry</h4>
+		    <h4>Delegate Details</h4>
 
 	        {{ formhelper.render_field(form.fullname) }}
 	        {{ formhelper.render_field(form.email) }}
 	        {{ formhelper.render_field(form.role) }}
 	        {{ formhelper.render_field(form.dietary) }}
+	        {{ formhelper.render_field(form.carReg) }}
 	        {{ formhelper.render_field(form.meetingId) }}
 
 	        {% if fullyBookedMeetings|length > 0 %}

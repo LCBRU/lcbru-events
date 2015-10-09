@@ -22,6 +22,7 @@ class Delegate(db.Model):
     email = db.Column(db.String(200))
     role = db.Column(db.String(50))
     dietary = db.Column(db.String(200))
+    carReg = db.Column(db.String(10))
     meetingId = db.Column(db.Integer, db.ForeignKey('genvasc_collaborators_meeting.id'))
     practice = db.relationship("Practice", backref=db.backref('delegates', order_by=id, cascade="all, delete-orphan"))
     meeting = db.relationship("Meeting", backref=db.backref('delegates', order_by=id, cascade="all, delete-orphan"))
