@@ -10,7 +10,7 @@ ADMINS = ['rab63@le.ac.uk']
 if not app.debug:
     import logging
     from logging.handlers import FileHandler
-    file_handler = FileHandler('error.log')
+    file_handler = FileHandler('/local/lcbru-events/error.log')
     file_handler.setLevel(logging.WARNING)
     app.logger.addHandler(file_handler)
 
