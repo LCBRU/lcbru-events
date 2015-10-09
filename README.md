@@ -32,4 +32,4 @@ necessary permissions.
 
 ## Installation on University of Leicester LAMP servers
 
-See [Here](http://lcbru-trac.rcs.le.ac.uk/wiki/LCBRU_Events%20HowTo%20Install).
+See [Here](http://lcbru-trac.rcs.le.ac.uk/wiki/LCBRU%20Events%20Registration%20Website%20HowTo%20Install).
