@@ -16,6 +16,13 @@ if not app.debug:
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
 
+if not app.debug:
+    import logging
+    from themodule import FileHandler
+    file_handler = FileHandler('error.log')
+    file_handler.setLevel(logging.WARNING)
+    app.logger.addHandler(file_handler)
+
 db = SQLAlchemy(app)
 
 import lcbru_events.database
