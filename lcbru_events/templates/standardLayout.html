@@ -12,6 +12,11 @@
         </a>
       </div>
     </header>
+    <nav>
+      <div class="container">
+        <a href="{{ url_for('static', filename='content/Directions to CVRC map .pdf') }}" target="_blank">How to find us</a>
+      </div>
+    </nav>
 
     <div class="container">
       <div>
@@ -50,7 +55,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted text-right">&copy; {{g.year}} Leicester Cardiovascular <span class="hidden-sm hidden-md hidden-lg">BRU</span><span class="hidden-xs">Biomedical Research Unit</span></p>
+        <p >&copy; {{g.year}} <a href="http://www2.le.ac.uk/research/current-research/bru">Leicester Cardiovascular <span class="hidden-sm hidden-md hidden-lg">BRU</span><span class="hidden-xs">Biomedical Research Unit</span></a></p>
       </div>
     </footer>
 {% endblock %}
