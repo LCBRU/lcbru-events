@@ -43,6 +43,25 @@ table#delegates {
   margin-bottom: 30px;
 }
 
+#sponsors {
+  margin-top: 80px;
+  text-align: center;
+}
+
+#sponsors img {
+  width: 160px;
+  margin-right: 20px;
+  margin-bottom: 40px;
+}
+
+#sponsors #uhl img {
+  width: 240px;
+}
+
+#sponsors #uol img {
+  width: 140px;
+}
+
 /* Footer */
 
 .footer {
@@ -88,6 +107,6 @@ ul.event_list li a{
 }
 
 #contactIfProblem {
-  margin-top: 20px;
+  margin-top: 80px;
   text-align: center;
 }

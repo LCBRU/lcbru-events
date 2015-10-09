@@ -13,11 +13,29 @@
 
     <p id="contactIfProblem" class="col-sm-12">
     	<strong>
-			If you have problems using this site please contact
-			the project manager Chris Greengrass on 
-			0116 204 4771/4738/4768 or
-			<a href="mailto:cg166@le.ac.uk">cg166@le.ac.uk</a>
-      	</strong>
-  </p>
+  			If you have problems using this site please contact
+  			the project manager Chris Greengrass on 
+  			0116 204 4771/4738/4768 or
+  			<a href="mailto:cg166@le.ac.uk">cg166@le.ac.uk</a>
+      </strong>
+    </p>
+
+    <div class="col-sm-12" id="sponsors">
+      <a href="https://www.leicestercityccg.nhs.uk" target="_blank">
+        <img src="{{ url_for('static', filename='images/lcccg.png') }}">
+      </a>
+      <a href="http://www.westleicestershireccg.nhs.uk" target="_blank">
+        <img src="{{ url_for('static', filename='images/wlccg.gif') }}">
+      </a>
+      <a href="http://www.leicestershospitals.nhs.uk" target="_blank" id="uhl">
+        <img src="{{ url_for('static', filename='images/Uhl.gif') }}">
+      </a>
+      <a href="https://eastleicestershireandrutlandccg.nhs.uk" target="_blank">
+        <img src="{{ url_for('static', filename='images/elccg.jpg') }}">
+      </a>
+      <a href="https://le.ac.uk" target="_blank" id="uol">
+        <img src="{{ url_for('static', filename='images/Uol.png') }}">
+      </a>
+    </div>
 {% endblock %}
 

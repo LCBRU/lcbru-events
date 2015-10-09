@@ -3,7 +3,7 @@
 
     <header>
       <div class="container">
-        <a href="http://www.nihr.ac.uk/" id="nihr">
+        <a href="http://www.nihr.ac.uk/" id="nihr" target="_blank">
           <img src="{{ url_for('static', filename='images/nihr.png') }}" alt="National Institute for Health Research" width="296" height="140.5" />
         </a>
         <a href="{{ url_for('index') }}">
@@ -50,7 +50,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted text-right">&copy; {{g.year}} Leicester Cardiovascular Biomedical Research Unit</p>
+        <p class="text-muted text-right">&copy; {{g.year}} Leicester Cardiovascular <span class="hidden-sm hidden-md hidden-lg">BRU</span><span class="hidden-xs">Biomedical Research Unit</span></p>
       </div>
     </footer>
 {% endblock %}
