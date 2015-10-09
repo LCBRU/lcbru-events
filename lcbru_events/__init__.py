@@ -18,7 +18,7 @@ if not app.debug:
 
 if not app.debug:
     import logging
-    from themodule import FileHandler
+    from logging.handlers import FileHandler
     file_handler = FileHandler('error.log')
     file_handler.setLevel(logging.WARNING)
     app.logger.addHandler(file_handler)
