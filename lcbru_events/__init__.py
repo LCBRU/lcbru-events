@@ -5,15 +5,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config.from_object('lcbru_events.settings')
 
-ADMINS = ['rab63@le.ac.uk']
-
-if not app.debug:
-    import logging
-    from logging.handlers import FileHandler
-    file_handler = FileHandler('/local/lcbru-events/error.log')
-    file_handler.setLevel(logging.WARNING)
-    app.logger.addHandler(file_handler)
-
 db = SQLAlchemy(app)
 
 import lcbru_events.database
