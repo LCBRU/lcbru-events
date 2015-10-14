@@ -55,3 +55,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+#Files that should not be carried across
+
+settings.py
