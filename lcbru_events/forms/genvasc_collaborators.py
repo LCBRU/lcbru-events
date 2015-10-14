@@ -1,10 +1,12 @@
-from flask_wtf import Form, RecaptchaField, Form
+from flask_wtf import Form, RecaptchaField
 from wtforms import StringField, HiddenField, SelectField, RadioField, FormField, Form as WtfForm
 from wtforms.validators import DataRequired, Length
 from wtforms.fields.html5 import EmailField
 
 class PracticeForm(Form):
     practice_code = StringField('Practice Code', validators=[DataRequired(), Length(max=10)])
+    recaptcha = RecaptchaField()
+
 
 class DelegateEditForm(Form):
     id = HiddenField('id')

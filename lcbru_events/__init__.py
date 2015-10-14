@@ -12,6 +12,10 @@ database.init_db()
 
 app.secret_key = app.config['SECRET_KEY']
 
+RECAPTCHA_PUBLIC_KEY = app.config['RECAPTCHA_PUBLIC_KEY']
+RECAPTCHA_PRIVATE_KEY = app.config['RECAPTCHA_PRIVATE_KEY']
+RECAPTCHA_DATA_ATTRS = {'theme': 'dark'}
+
 @app.before_request
 def set_date():
     g.year = datetime.datetime.now().year
