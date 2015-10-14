@@ -5,17 +5,22 @@
 
     <div class="col-sm-6 col-sm-offset-3 lcbru-form">
 
-	    <h4>Please enter the code of your <em>main</em> practice and tick the authentication box below</h4>
+	    <h4>Please enter the code of your <em>main</em> practice (for example 'C99999') and tick the authentication box below</h4>
 
 		<form method="POST" class="form-horizontal">
 		    {{ form.hidden_tag() }}
 
 		    <div>
 		        {{ formhelper.render_field(form.practice_code) }}
-		        {{ formhelper.render_field(form.recaptcha) }}
+
+		        <div class="form-group">
+		        	<div class="col-md-9 col-md-offset-3">
+			        	{{ form.recaptcha }}
+		        	</div>
+		        </div>
 		    </div>
 
-		    <div class="col-sm-12 text-right">
+ 		    <div class="col-sm-12 text-right">
 		        <button type="submit" class="btn btn-primary">Proceed</button>
 		    </div>
 		</form>
