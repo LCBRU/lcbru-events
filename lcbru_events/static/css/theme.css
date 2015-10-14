@@ -10,6 +10,7 @@ header {
 
 header a#nihr {
   float: right;
+  padding: 1px;
 }
 
 header h1 {
