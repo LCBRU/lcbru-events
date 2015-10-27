@@ -21,6 +21,7 @@ header h1 {
 header h2 {
   font-size: 400%;
   margin-top: 0;
+  text-align: left;
 }
 
 header a, header a:hover, header a:active, header a:focus {
@@ -51,6 +52,9 @@ div.alert {
   margin-top: 20px;
 }
 
+h2 {
+  text-align: center;
+}
 h3 {
   font-size: 2em;
   text-align: center;
