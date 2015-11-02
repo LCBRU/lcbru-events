@@ -5,7 +5,7 @@ from wtforms.fields.html5 import EmailField
 
 class PracticeForm(Form):
     practice_code = StringField('Practice Code', validators=[DataRequired(), Length(max=10)])
-    recaptcha = RecaptchaField()
+#    recaptcha = RecaptchaField()
 
 
 class DelegateEditForm(Form):
