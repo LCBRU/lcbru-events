@@ -8,6 +8,9 @@ import time
 def genvasc_collaborators_introduction():
     session['practice_code'] = ''
 
+    fred = 0
+    mary = 365 / fred
+
     form = PracticeForm()
 
     if form.validate_on_submit():
